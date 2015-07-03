@@ -6,7 +6,7 @@ setup(
     version=__version__,
     author='erbriones',
     author_email='evan@evanbriones.com',
-    description=("A collection of python logging formats and helpers for"
+    description=("A collection of python logging formats and helpers for "
                  "transforming logs."),
     long_description=open("README.md").read(),
     license="Apache License, Version 2.0",
