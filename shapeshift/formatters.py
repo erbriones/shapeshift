@@ -32,13 +32,7 @@ def format_traceback(exc_info):
     return "".join(traceback.format_exception(*exc_info))
 
 
-class JSONFormatter(logging.Formatter):
-    def __init__(self, *args, **kwargs):
-        self.format_string = kwargs.pop("format_string", FORMAT_STRING)
-        self.encoding = kwargs.pop("encoding", DEFAULT_ENCODING)
-        self.tags = kwargs.pop("tags", None)
-        super(JSONFormatter, self).__init__(self, *args, **kwargs)
-
+class RecordFieldsMixin(object):
     def get_default_fields(self, record):
         fields = {
             "@logger": record.name,
@@ -81,12 +75,15 @@ class JSONFormatter(logging.Formatter):
                     fields[key] = repr(value)
         return fields
 
-    def serialize(self, message):
-        payload = json.dumps(message)
-        if sys.version_info < (3, 0):
-            return payload
-        else:
-            return bytes(payload, encoding=self.encoding)
+
+class _SerializableFormatter(RecordFieldsMixin, logging.Formatter):
+    serialize = None
+
+    def __init__(self, *args, **kwargs):
+        self.format_string = kwargs.pop("format_string", FORMAT_STRING)
+        self.encoding = kwargs.pop("encoding", DEFAULT_ENCODING)
+        self.tags = kwargs.pop("tags", None)
+        super(_SerializableFormatter, self).__init__(self, *args, **kwargs)
 
     def format(self, record):
         #: add default record fields
@@ -99,4 +96,19 @@ class JSONFormatter(logging.Formatter):
         #: add extra fields
         message.update(self.get_extra_fields(record))
 
+        #: checks if the serialize method has been defined
+        assert self.serialize is not None, (
+            "%s expected method `serialize` to be present"
+            % self.__class__.__name__
+        )
+
         return self.serialize(message)
+
+
+class JSONFormatter(_SerializableFormatter):
+    def serialize(self, message):
+        payload = json.dumps(message)
+        if sys.version_info < (3, 0):
+            return payload
+        else:
+            return bytes(payload, encoding=self.encoding)
