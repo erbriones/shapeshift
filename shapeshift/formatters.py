@@ -14,7 +14,7 @@ else:
 
 DEFAULT_ENCODING = "utf-8"
 
-FORMAT_STRING = "%Y-%m-%d@%H:%M:%S"
+FORMAT_STRING = "%Y-%m-%dT%H:%M:%S"
 
 SKIP_LIST = ("args", "asctime", "created", "exc_info", "exc_text", "filename",
              "funcName", "levelname", "levelno", "lineno", "module")
