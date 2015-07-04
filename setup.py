@@ -9,7 +9,7 @@ setup(
     description=("A collection of python logging formats and helpers for "
                  "transforming logs."),
     long_description=open("README.md").read(),
-    license="Apache License, Version 2.0",
+    license="MIT License",
     url="https://github.com/erbriones/shapeshift",
     packages=['shapeshift'],
     classifiers=[
