@@ -112,3 +112,14 @@ class JSONFormatter(_SerializableFormatter):
             return payload
         else:
             return bytes(payload, encoding=self.encoding)
+
+
+class KeyValueFormatter(_SerializableFormatter):
+    def serialize(self, message):
+        #: stringify key value pairs
+        pairs = ["{0}={1}".format(*pair) for pair in message.items()]
+        payload = " ".join(pairs)
+        if sys.version_info < (3, 0):
+            return payload
+        else:
+            return bytes(payload, encoding=self.encoding)
