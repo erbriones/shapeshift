@@ -2,3 +2,4 @@
 0.1.2   Fix incorrect attribute in format_timestamp
         Set default timestamp format to better default
 0.2.0   Add KeyValueFormatter
+0.2.1   Fix compatibility issue with python3
