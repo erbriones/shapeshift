@@ -2,9 +2,10 @@
 """
 Transforming python logs
 """
+from __future__ import absolute_import
 from collections import namedtuple
 
-from formatters import JSONFormatter, KeyValueFormatter
+from .formatters import JSONFormatter, KeyValueFormatter
 
 version_info = namedtuple("version_info", ["major", "minor", "patch"])
 VERSION = version_info(0, 2, 0)
