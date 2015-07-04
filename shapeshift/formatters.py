@@ -22,7 +22,7 @@ SKIP_LIST = ("args", "asctime", "created", "exc_info", "exc_text", "filename",
 
 def format_timestamp(time, format_string):
     stamp = datetime.utcfromtimestamp(time)
-    microseconds = (stamp.microseconds / 1000)
+    microseconds = (stamp.microsecond / 1000)
     return stamp.strftime(format_string) + ".%03d" % microseconds + "Z"
 
 
