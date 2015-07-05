@@ -23,8 +23,11 @@ DEFAULT_ENCODING = "utf-8"
 
 FORMAT_STRING = "%Y-%m-%dT%H:%M:%S"
 
-SKIP_LIST = ("args", "asctime", "created", "exc_info", "exc_text", "filename",
-             "funcName", "levelname", "levelno", "lineno", "module")
+#: add log record attributes to skip list
+SKIP_LIST = ("args", "asctime", "created", "exc_info", "filename", "funcName",
+             "levelname", "levelno", "lineno", "message", "module", "msecs",
+             "msg", "name", "pathname", "process", "processName",
+             "relativeCreated", "thread", "threadName")
 
 
 def format_timestamp(time, format_string):
