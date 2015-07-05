@@ -4,3 +4,4 @@
 0.2.0   Add KeyValueFormatter
 0.2.1   Fix compatibility issue with python3
 0.3.0   Add MessagePackFormatter
+0.3.1   Skip all log record attributes in extras
