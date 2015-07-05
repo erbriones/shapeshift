@@ -3,3 +3,4 @@
         Set default timestamp format to better default
 0.2.0   Add KeyValueFormatter
 0.2.1   Fix compatibility issue with python3
+0.3.0   Add MessagePackFormatter
