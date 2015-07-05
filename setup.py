@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from shapeshift import __version__
 
 setup(
@@ -11,7 +11,7 @@ setup(
     long_description=open("README.md").read(),
     license="MIT License",
     url="https://github.com/erbriones/shapeshift",
-    packages=['shapeshift'],
+    packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
