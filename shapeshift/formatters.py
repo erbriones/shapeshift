@@ -1,11 +1,18 @@
 import logging
 import sys
+import io
 import traceback
 from datetime import datetime
 try:
     import json
 except ImportError:
     import simplejson as json
+
+try:
+    import msgpack
+    has_msgpack = True
+except ImportError:
+    has_msgpack = False
 
 if sys.version_info < (3, 0):
     SIMPLE_TYPES = (basestring, bool, dict, float, int, long, list, type(None))
@@ -123,3 +130,18 @@ class KeyValueFormatter(_SerializableFormatter):
             return payload
         else:
             return bytes(payload, encoding=self.encoding)
+
+
+class MessagePackFormatter(_SerializableFormatter):
+    def __init__(self, *args, **kwargs):
+        if not has_msgpack:
+            raise Exception(
+                "msgpack not found, please install msgpack.")
+        super(MessagePackFormatter, self).__init__(*args, **kwargs)
+
+    def serialize(self, message):
+        stream = io.BytesIO()
+        msgpack.pack(message, stream, encoding=self.encoding)
+        payload = stream.getvalue()
+        stream.close()
+        return payload
