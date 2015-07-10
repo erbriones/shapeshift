@@ -6,3 +6,5 @@
 0.3.0   Add MessagePackFormatter
 0.3.1   Skip all log record attributes in extras
 0.3.2   Import MessagePackFormatter at the package level
+0.3.3   Add create_logger function
+0.3.4   Use name passed to create_logger

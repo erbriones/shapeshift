@@ -9,7 +9,7 @@ from .formatters import JSONFormatter, KeyValueFormatter, MessagePackFormatter
 from .generic import create_logger
 
 version_info = namedtuple("version_info", ["major", "minor", "patch"])
-VERSION = version_info(0, 3, 3)
+VERSION = version_info(0, 3, 4)
 
 __title__ = "shapeshift"
 __author__ = "Evan Briones"

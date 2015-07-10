@@ -11,7 +11,7 @@ def create_logger(name, formatter=None, handler=None, level=None):
     """
     Returns a new logger for the specified name.
     """
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(name)
 
     #: remove existing handlers
     logger.handlers = []
