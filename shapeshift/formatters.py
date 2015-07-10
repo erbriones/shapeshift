@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+Collection of logging formatters
+"""
 import logging
 import sys
 import io

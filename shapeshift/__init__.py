@@ -8,7 +8,7 @@ from collections import namedtuple
 from .formatters import JSONFormatter, KeyValueFormatter, MessagePackFormatter
 
 version_info = namedtuple("version_info", ["major", "minor", "patch"])
-VERSION = version_info(0, 3, 1)
+VERSION = version_info(0, 3, 2)
 
 __title__ = "shapeshift"
 __author__ = "Evan Briones"

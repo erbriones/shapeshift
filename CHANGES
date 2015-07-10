@@ -5,3 +5,4 @@
 0.2.1   Fix compatibility issue with python3
 0.3.0   Add MessagePackFormatter
 0.3.1   Skip all log record attributes in extras
+0.3.2   Import MessagePackFormatter at the package level
