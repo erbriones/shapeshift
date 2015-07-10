@@ -13,6 +13,9 @@ def create_logger(name, formatter=None, handler=None, level=None):
     """
     logger = logging.getLogger(__name__)
 
+    #: remove existing handlers
+    logger.handlers = []
+
     #: use a standard out handler
     if handler is None:
         handler = logging.StreamHandler(sys.stdout)
