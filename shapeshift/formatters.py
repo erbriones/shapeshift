@@ -2,6 +2,7 @@
 """
 Collection of logging formatters
 """
+from __future__ import absolute_import
 import logging
 import sys
 import io
@@ -12,11 +13,7 @@ try:
 except ImportError:
     import simplejson as json
 
-try:
-    import msgpack
-    has_msgpack = True
-except ImportError:
-    has_msgpack = False
+from .compat import msgpack
 
 if sys.version_info < (3, 0):
     SIMPLE_TYPES = (basestring, bool, dict, float, int, long, list, type(None))
@@ -141,7 +138,7 @@ class KeyValueFormatter(_SerializableFormatter):
 
 class MessagePackFormatter(_SerializableFormatter):
     def __init__(self, *args, **kwargs):
-        if not has_msgpack:
+        if not msgpack:
             raise Exception(
                 "msgpack not found, please install msgpack.")
         super(MessagePackFormatter, self).__init__(*args, **kwargs)
