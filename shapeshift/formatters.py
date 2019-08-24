@@ -119,22 +119,27 @@ class _SerializableFormatter(RecordFieldsMixin, logging.Formatter):
 class JSONFormatter(_SerializableFormatter):
     def serialize(self, message):
         payload = json.dumps(message)
-        if sys.version_info < (3, 0):
-            return payload
-        else:
-            return bytes(payload, encoding=self.encoding)
+        return payload
 
 
 class KeyValueFormatter(_SerializableFormatter):
     def serialize(self, message):
-        #: stringify key value pairs
-        pairs = ["{0}={1}".format(*pair) for pair in message.items()]
-        payload = " ".join(pairs)
-        if sys.version_info < (3, 0):
-            return payload
-        else:
-            return bytes(payload, encoding=self.encoding)
+        output = StringIO.StringIO()
+        items = []
+        while len(items) != 0:
+            item = items.pop()
+            if (isinstance(it, list)):
+                for item in it:
+                    items.append(item)
+            elif (isinstance(it, dict)):
+                for key in it.keys():
+                    items.append(it[key])
+            else:
+                output.write(repr(value))
 
+        content = output.getvalue()
+        stream.close()
+        return content
 
 class MessagePackFormatter(_SerializableFormatter):
     def __init__(self, *args, **kwargs):

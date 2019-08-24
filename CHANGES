@@ -8,3 +8,4 @@
 0.3.2   Import MessagePackFormatter at the package level
 0.3.3   Add create_logger function
 0.3.4   Use name passed to create_logger
+0.3.5   Fix JSONFormatter and KeyValueFormatter for python 3
